@@ -16,7 +16,7 @@ Lightweight vector document storage and semantic search API. Designed for edge d
 
 ```bash
 # Clone and configure
-git clone https://github.com/your-repo/ClaraVector.git
+git clone https://github.com/claraverse-space/ClaraVector.git
 cd ClaraVector
 cp .env.example .env
 
@@ -124,6 +124,28 @@ NIM_RPM_LIMIT=40
 HOST=0.0.0.0
 PORT=8000
 MAX_FILE_SIZE_MB=10
+
+# CORS - Configure for production!
+CORS_ORIGINS=*                    # Or: https://myapp.com,https://admin.myapp.com
+CORS_ALLOW_CREDENTIALS=true
+CORS_ALLOW_METHODS=*              # Or: GET,POST,DELETE
+CORS_ALLOW_HEADERS=*
+```
+
+### CORS Examples
+
+```bash
+# Development (allow all)
+CORS_ORIGINS=*
+
+# Single frontend
+CORS_ORIGINS=https://myapp.com
+
+# Multiple origins
+CORS_ORIGINS=https://myapp.com,https://admin.myapp.com,http://localhost:3000
+
+# Restricted methods
+CORS_ALLOW_METHODS=GET,POST,DELETE
 ```
 
 ## Resource Usage

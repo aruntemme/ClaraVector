@@ -28,6 +28,13 @@ class Settings(BaseSettings):
     max_retries: int = 3
     retry_delay_seconds: float = 5.0
 
+    # CORS Configuration
+    # Comma-separated list of allowed origins, or "*" for all
+    cors_origins: str = "*"
+    cors_allow_credentials: bool = True
+    cors_allow_methods: str = "*"
+    cors_allow_headers: str = "*"
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
@@ -48,6 +55,27 @@ class Settings(BaseSettings):
     def min_request_interval(self) -> float:
         """Minimum seconds between NIM API requests."""
         return 60.0 / self.nim_rpm_limit
+
+    @property
+    def cors_origins_list(self) -> list[str]:
+        """Parse CORS origins from comma-separated string."""
+        if self.cors_origins == "*":
+            return ["*"]
+        return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+
+    @property
+    def cors_methods_list(self) -> list[str]:
+        """Parse CORS methods from comma-separated string."""
+        if self.cors_allow_methods == "*":
+            return ["*"]
+        return [method.strip() for method in self.cors_allow_methods.split(",") if method.strip()]
+
+    @property
+    def cors_headers_list(self) -> list[str]:
+        """Parse CORS headers from comma-separated string."""
+        if self.cors_allow_headers == "*":
+            return ["*"]
+        return [header.strip() for header in self.cors_allow_headers.split(",") if header.strip()]
 
 
 @lru_cache
