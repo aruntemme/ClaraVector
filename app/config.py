@@ -19,6 +19,7 @@ class Settings(BaseSettings):
 
     # Server configuration
     host: str = "0.0.0.0"
+    # Note: Railway injects PORT env var which pydantic-settings reads automatically
     port: int = 8000
     workers: int = 2
 
