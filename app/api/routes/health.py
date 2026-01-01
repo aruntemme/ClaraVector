@@ -9,6 +9,12 @@ from app.services.nim_client import NIMClient
 router = APIRouter(prefix="/health", tags=["Health"])
 
 
+@router.get("/live")
+async def liveness_check():
+    """Simple liveness check - returns 200 if the app is running."""
+    return {"status": "alive"}
+
+
 @router.get("", response_model=HealthResponse)
 async def health_check(
     db: Database = Depends(get_database),

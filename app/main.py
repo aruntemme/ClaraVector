@@ -15,7 +15,7 @@ class APIKeyMiddleware(BaseHTTPMiddleware):
     """Middleware to validate API key on all requests."""
 
     # Paths that don't require authentication
-    PUBLIC_PATHS = {"/", "/docs", "/redoc", "/openapi.json", "/api/v1/health"}
+    PUBLIC_PATHS = {"/", "/docs", "/redoc", "/openapi.json", "/api/v1/health", "/api/v1/health/live"}
 
     async def dispatch(self, request: Request, call_next):
         settings = get_settings()

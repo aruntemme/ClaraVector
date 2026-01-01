@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     nim_embedding_dim: int = 1024
 
     # Data directories
-    data_dir: Path = Path("/home/claraverse/ClaraVector/data")
+    data_dir: Path = Path("/app/data")
 
     # Server configuration
     host: str = "0.0.0.0"
